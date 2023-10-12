@@ -10,6 +10,7 @@ function FoodList() {
   const [foods, setFoods] = useState(foodsJson);
   const [showForm, setShowForm] = useState(false);
   const [noFood, setNoFoods] = useState(false);
+  const [search, setSearch] = useState("");
 
   const handleDeleteFood = (id) => {
     const newFoods = foods.filter((food) => food.id !== id);
@@ -29,14 +30,23 @@ function FoodList() {
     setFoods(foodsCopy);
   };
 
-  const handleSearchResult = (search) => {
-    const foodsBackUp = [...foods];
-    const searchMatches = foodsJson.filter(
-      (food) => food.name.toUpperCase().indexOf(search.toUpperCase()) > -1
-    );
+  // const handleSearchResult = (search) => {
+  //   const foodsBackUp = [...foods];
+  //   const searchMatches = foodsJson.filter(
+  //     (food) => food.name.toUpperCase().indexOf(search.toUpperCase()) > -1
+  //   );
 
-    setFoods(searchMatches);
-  };
+  //   setFoods(searchMatches);
+  // };
+
+  let foodToDisplay;
+  if (search === "") {
+    foodsToDisplay = foods;
+  } else {
+    foodToDisplay = foods.filter(() =>
+      food.name.toUppercase().includes(search.toUpperCase())
+    );
+  }
 
   return (
     <>
@@ -52,7 +62,8 @@ function FoodList() {
       <Divider>Food List</Divider>
 
       <Row style={{ width: "100%", justifyContent: "center" }}>
-        <Search handleSearchResult={handleSearchResult} />
+        {/* <Search handleSearchResult={handleSearchResult} /> */}
+        <Search search={search} setSearch={setSearch} />
       </Row>
 
       <Row style={{ width: "100%", justifyContent: "center" }}>

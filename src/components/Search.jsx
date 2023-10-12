@@ -2,13 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { Divider, Input, Button, Row } from "antd";
 
-function Search({ handleSearchResult }) {
-  const [search, setSearch] = useState("");
+function Search({ search, setSearch }) {
+  // const [search, setSearch] = useState("");
 
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-    return handleSearchResult(search);
-  };
+  // const handleSearch = (event) => {
+  //   setSearch(event.target.value);
+  //   return handleSearchResult(search);
+  // };
 
   return (
     <>
@@ -18,7 +18,7 @@ function Search({ handleSearchResult }) {
           id="search"
           placeholder="search"
           value={search}
-          onChange={handleSearch}
+          onChange={(e) => setSearch(e.target.value)}
         />
       </form>
     </>
